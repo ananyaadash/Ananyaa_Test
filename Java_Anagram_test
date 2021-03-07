@@ -1,0 +1,60 @@
+//Java program for counting the no of anagrams in a string array
+	//input: Input - [eat, ate, tea, java, avja, apple]
+	import java.util.*;
+	public class Test  
+	{ 
+	    static final int CHARS = 256; 
+	    
+	    //check for anagrams  
+	    static boolean Anagram1(String s1, String s2) 
+	    { 
+	        int[] count = new int[CHARS]; 
+	        int i; 
+	  
+	        for (i = 0; i < s1.length() && i < s2.length(); i++) 
+	        { 
+	            count[s1.charAt(i)]++; 
+	            count[s2.charAt(i)]--; 
+	        } 
+	  
+	        if (s1.length() != s2.length()) 
+	          return false; 
+	  
+	        for (i = 0; i < CHARS; i++) 
+	            if (count[i] != 0) 
+	                return false; 
+	         return true; 
+	    } 
+	  
+	    static int Anagram2(String A[], int n) 
+	    { 
+	        int count1=1;
+	        for (int i = 0; i < n; i++) 
+	            for (int j = i+1; j < n; j++) 
+	               {
+	         
+	              if(Anagram1(A[i], A[j]))
+	                   {
+	                       count1++;
+	                       //Bonus line for printing anagrams
+	                       System.out.println(A[i] + " is anagram of " + A[j]);
+	                       
+	                   }
+	               
+	                   if (!Anagram1(A[i], A[j]) && count1==1)
+	                     count1--;
+	               }   
+	                   return count1;   //to return count of anagrams
+	               }
+	               
+	                
+	                  
+	    public static void main(String args[]) 
+	    { 
+	        String A[] = {"eat","ate",
+	                        "tea","java", "avja", "apple"}; 
+	        int n = A.length;
+	        
+	        System.out.println(Anagram2(A, n));
+	    } 
+	} 
